@@ -2170,12 +2170,11 @@ int main(int argc, char **argv) {
       }
 
       doblock = 1;
-      if (++c == LENGTH(clipboards)-1) {
-         OUT("Handle clipboard %s", clipboards[c].name);
+      if (++c == LENGTH(clipboards)) {
          for (c = 0; c != LENGTH(clipboards); ++c) {
-               if (clipboards[c].owner == XCB_NONE &&
+            if (clipboards[c].owner == XCB_NONE &&
                   (clipboards[c].owner = get_owner_for_selection(clipboards[c].sel)) == XCB_NONE)
-                  clipboards[c].should_own = 1;
+               clipboards[c].should_own = 1;
 
             if (clipboards[c].should_own) set_clipboard_own(&clipboards[c]);
             if (clipboards[c].is_waiting) {
