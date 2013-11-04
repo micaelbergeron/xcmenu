@@ -47,7 +47,7 @@ install: all
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
 	@cp -f xcmenu xcmenuctrl ${DESTDIR}${PREFIX}/bin
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/xcmenu
-	@chmod 755 ${DESTDIR}${PREFIX}/bin/xcmenurctrl
+	@chmod 755 ${DESTDIR}${PREFIX}/bin/xcmenuctrl
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
