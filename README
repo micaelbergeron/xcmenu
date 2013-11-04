@@ -1,0 +1,37 @@
+Lightweight clipboard manager for X
+
+By default it keeps history of your XA_CLIPBOARD,
+and keeps XA_PRIMARY on sync with it.
+
+History is saved in XDG_USER_DATA/xcmenu or $HOME/.local/xcmenu
+By default it uses zlib compression.
+
+Change settings in config.h
+Also comes with bash script for dmenu access.
+
+xcmenuctrl can read dmenu settings from $HOME/.dmenurc
+with the variable XCMENUCTRL_DMENU, for example:
+XCMENUCTRL_DMENU='dmenu -i -l 15'
+
+By default, xcmenu uses CLEAR_SELECTIONS bitflag for,
+XA_CLIPBOARD to increase compatibility with applications.
+
+Without this flag however, you can have some extra flexibility
+related to selection targets.
+
+MISC:
+   You can set clipboard data similar to xsel/xclip
+   echo "asd" | xcmenu -pi # copy to primary
+   echo "asd" | xcmenu -ci # copy to clipboard
+   xcmenu -p               # output selection from primary
+   xcmenu -c               # output selection from clipboard
+
+   Special selections are supported as well
+   xcmenu -b image/png > image.png  # get image from gimp
+   xcmenu -bi image/png < image.png # upload image to image/png
+
+Those commands will leave xcmenu process open until someone else takes ownership of the particular selection (ex. XA_CLIPBOARD).
+
+TODO:
+   Remove clip by index from history from CLI
+   Dynamic specialclip buffers
