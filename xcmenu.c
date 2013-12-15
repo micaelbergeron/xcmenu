@@ -573,11 +573,8 @@ static int dmenu_puts(void *calldata, clipdata *c,
    size_t i, limit; char ws = 0;
    if (rlen) return 1;
    limit = (blen>DMENU_LIMIT?DMENU_LIMIT:blen);
-   if (limit > 0 && (buffer[limit-1] & 0xc0) == 0x80) {
-      for (; limit > 0 && (buffer[limit-1] & 0xc0) == 0x80; --limit);
-      --limit;
-      if (limit == 0) limit = (blen>DMENU_LIMIT?DMENU_LIMIT:blen);
-   }
+   for (; limit > 0 && (buffer[limit] & 0xc0) == 0x80; --limit);
+   if (limit == 0) limit = (blen>DMENU_LIMIT?DMENU_LIMIT:blen);
    printf("%4d: ", index);
    for (i = 0; i != limit; ++i) {
       if (ws && buffer[i]==' ') continue; ws = 0;
