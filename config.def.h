@@ -101,6 +101,7 @@ static specialclip sclip[] = {
    REGISTER_SELECTION("text/uri-list", 0, 0),
    REGISTER_SELECTION("x-special/gnome-copied-files", 0, 0),
    REGISTER_SELECTION("application/x-kde-cutselection", 0, 0),
+   REGISTER_SELECTION("image/svg+xml", 1, 0),
    REGISTER_SELECTION("image/png", 1, 0),
    REGISTER_SELECTION("image/tiff", 1, 0),
    REGISTER_SELECTION("image/jpeg", 1, 0),
