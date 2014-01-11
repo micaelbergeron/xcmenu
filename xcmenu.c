@@ -1338,7 +1338,7 @@ static void send_xsel(xcb_window_t requestor, xcb_atom_t property, xcb_atom_t se
             ev.property = XCB_NONE;
          }
       } else {
-         OUT("Crap property");
+         OUT("Crap property: 0x%x", target);
          ev.property = XCB_NONE;
       }
    }
