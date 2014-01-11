@@ -1314,13 +1314,12 @@ static void send_xsel(xcb_window_t requestor, xcb_atom_t property, xcb_atom_t se
             }
          } else tatoms[hasdata++] = satoms[i];
       }
-      for (i = 0; i != LENGTH(sclip); ++i)
-         if (bclip[sclip[i].data_index].sclip == &sclip[i] &&
-               bclip[sclip[i].data_index].size &&
-               bclip[sclip[i].data_index].data) {
+      for (i = 0; i != LENGTH(sclip); ++i) {
+         if (bclip[sclip[i].data_index].size && bclip[sclip[i].data_index].data) {
             OUT("Hasdata: %s", sclip[i].name);
             tatoms[hasdata++] = sclip[i].sel;
          }
+      }
       incr = _xcb_change_property(xcb, &ev, XCB_PROP_MODE_REPLACE, atoms[ATOM], 32, hasdata, tatoms);
 #if 0
    } else if (target == atoms[MULTIPLE]) {
