@@ -1329,7 +1329,7 @@ static void send_xsel(xcb_window_t requestor, xcb_atom_t property, xcb_atom_t se
    } else {
       if ((s = we_handle_special_selection(target))) {
          OUT("Special data request from %s", s->name);
-         if (bclip[s->data_index].sclip == s && bclip[s->data_index].size && bclip[s->data_index].data)
+         if (bclip[s->data_index].size && bclip[s->data_index].data)
             incr = _xcb_change_property(xcb, &ev, XCB_PROP_MODE_REPLACE, s->sel, 8,
                   (size = bclip[s->data_index].size), (data = bclip[s->data_index].data));
          else {
