@@ -475,9 +475,7 @@ static int set_clipboard_data(clipdata *c, void *buffer, size_t len) {
 
    if (c->flags & CLIPBOARD_TRIM_WHITESPACE ||
       (c->flags & CLIPBOARD_TRIM_WHITESPACE_NO_MULTILINE && !isml(buffer, len))) {
-      if (!(copy = trim_whitespace(s, len, &nlen)) || !nlen)
-         goto fail; /* prop empty after trimming */
-      len = nlen;
+      if ((copy = trim_whitespace(s, len, &nlen))) len = nlen;
    }
 
    if (!copy) {
