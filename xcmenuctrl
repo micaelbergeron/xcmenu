@@ -6,10 +6,9 @@
 
 if [[ -f "$HOME/.dmenurc" ]]; then
    . "$HOME/.dmenurc"
-   DMENU="$XCMENUCTRL_DMENU"
 fi
 
-[[ -n "$DMENU" ]] || DMENU="dmenu -i -l 15"
+DMENU="${XCMENUCTRL_DMENU:-dmenu -i -l 15}"
 XCMENU="xcmenu"
 
 # clipboard to copy to
