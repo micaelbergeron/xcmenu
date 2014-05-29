@@ -1730,6 +1730,7 @@ static int set_xsel(xcb_atom_t selection, xcb_atom_t target, void *buffer, size_
    xcb_generic_event_t *ev = NULL;
    xcb_selection_clear_event_t *sc;
    xcb_selection_request_event_t *sr;
+   int times = 0;
 
    OUT("\3Setting selection to X and blocking until it's taken");
    if (!set_own(selection)) return -1;
@@ -1743,8 +1744,8 @@ static int set_xsel(xcb_atom_t selection, xcb_atom_t target, void *buffer, size_
             sr = (xcb_selection_request_event_t*)ev;
             OUT("xcb: selection request");
             if (sr->selection == selection) {
-               send_xsel(sr->requestor, sr->property, sr->selection,
-                     sr->target, sr->time, len, buffer);
+               send_xsel(sr->requestor, sr->property, sr->selection, sr->target, sr->time, len, buffer);
+               if (++times > 1) break;
             }
          } else if (XCB_EVENT_RESPONSE_TYPE(ev) == XCB_PROPERTY_NOTIFY) {
             handle_property((xcb_property_notify_event_t*)ev);
