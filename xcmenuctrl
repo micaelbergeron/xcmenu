@@ -49,9 +49,9 @@ syncmode() {
    [[ -n "$synf" ]] || exit 1
    local synt="$(echo -e "primary\nsecondary\nclipboard" | $DMENU -p "sync_to")"
    [[ -n "$synt" ]] || exit 1
-   "$XCMENU" --${synf} | "$XCMENU" -i --${synt}
-   sleep 0.25
-   "$XCMENU" --${synt}
+   local data="$("$XCMENU" --${synf})"
+   "$XCMENU" -i --${synt} <<< "$data"
+   echo "$data"
    exit 0
 }
 
@@ -59,17 +59,17 @@ syncmode() {
 clipmode() {
    id="$("$XCMENU" -m | $DMENU -p "xcmenu" | sed 's/^[^0-9]*\([^:]*\):.*/\1/g')"
    [[ -n "$id" ]] || exit 1
-   echo "$id" | "$XCMENU" -g | "$XCMENU" -i --${CLIPBOARD}
-   sleep 0.25
-   "$XCMENU" --${CLIPBOARD}
+   local data="$(echo "$id" | "$XCMENU" -g)"
+   "$XCMENU" -i --${CLIPBOARD} <<< "$data"
+   echo "$data"
    exit 0
 }
 
 # sync
 sync() {
-   "$XCMENU" --$1 | "$XCMENU" -i --$2
-   sleep 0.25
-   "$XCMENU" --$2
+   local data="$("$XCMENU" --$1)"
+   "$XCMENU" -i --$2 <<< "$data"
+   echo "$data"
    exit 0;
 }
 
