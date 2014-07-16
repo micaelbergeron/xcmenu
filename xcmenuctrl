@@ -21,15 +21,17 @@ err() { echo -e "$@" 1>&2; exit 1; }
 
 # usage
 usage() {
-   echo "usage: $(basename $@) [-us]"
-   echo -e "\t-u : url mode"
-   echo -e "\t-s : sync selection to another selection"
-   echo -e "\t\t-spc : sync primary to clipboard"
-   echo -e "\t\t-scp : sync clipboard to primary"
-   echo -e "\t\t-ssc : sync secondary to clipboard"
-   echo -e "\t\t-scs : sync clipboard to secondary"
-   echo -e "\t\t-sps : sync primary to secondary"
-   echo -e "\t\t-ssp : sync secondary to primary"
+   cat << EOF
+usage: $(basename $@) [-us]
+   -u : url mode
+   -s : sync selection to another selection
+        -spc : sync primary to clipboard
+        -scp : sync clipboard to primary
+        -ssc : sync secondary to clipboard
+        -scs : sync clipboard to secondary
+        -sps : sync primary to secondary
+        -ssp : sync secondary to primary
+EOF
    exit 0
 }
 
