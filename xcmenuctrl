@@ -40,7 +40,7 @@ urlmode() {
    local protos="https?|ftps?|mailto|ssh|git|file"
    local url="$("$XCMENU" -l | grep -aoP "((($protos):\/\/|www\..*\.)[-/.\?=&%()#@~:\w]+)" | $DMENU -p "loliurl")"
    [[ -n "$url" ]] || exit 1
-   echo "#LC:skip_history:$url" | "$XCMENU" -i --${CLIPBOARD}
+   printf %s "#LC:skip_history:$url" | "$XCMENU" -i --${CLIPBOARD}
    echo "$url"
    exit 0
 }
