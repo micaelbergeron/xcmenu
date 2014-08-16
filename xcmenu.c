@@ -507,7 +507,7 @@ static char* get_clipboard_database_path(clipdata *c, char create) {
    size_t len;
 
    if (!(xdg_data = getenv("XDG_DATA_HOME"))) {
-      xdg_data = ".local";
+      xdg_data = ".local/share";
 
       if (!(home = getenv("HOME")) || !(pw = getpwuid(getuid())))
          goto no_home;
