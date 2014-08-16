@@ -3,7 +3,7 @@ Lightweight clipboard manager for X
 By default it keeps history of your XA_CLIPBOARD,
 and keeps XA_PRIMARY on sync with it.
 
-History is saved in XDG_USER_DATA/xcmenu or $HOME/.local/xcmenu
+History is saved in $XDG_USER_DATA/xcmenu or $HOME/.local/share/xcmenu
 By default it uses zlib compression.
 
 Change settings in config.h
